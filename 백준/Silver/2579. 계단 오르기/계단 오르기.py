@@ -13,10 +13,6 @@ if stair_num == 1 :
 elif stair_num == 2 :
     dp[1] = stair[1]
     dp[2] = max(stair[1] + stair[2], stair[2])
-elif stair_num == 3 :
-    dp[1] = stair[1]
-    dp[2] = max(stair[1] + stair[2], stair[2])
-    dp[3] = max(stair[1]+stair[3], stair[2]+stair[3])
 else:
     dp[1] = stair[1]
     dp[2] = max(stair[1] + stair[2], stair[2])
