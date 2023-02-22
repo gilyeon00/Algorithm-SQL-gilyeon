@@ -1,5 +1,5 @@
 def solution(routes):
-    # 테스트 1은 맞지만 다른게 다 틀리고, 당연히 시간초과가 우려됨
+    # 문제 잘못이해
 #     answer = 0
 #     cam_list = [0] * 60001
     
