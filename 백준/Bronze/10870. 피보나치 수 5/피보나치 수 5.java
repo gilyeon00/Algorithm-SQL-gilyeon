@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 
 public class Main  {
 
-    static int cnt = 2;
+    static int cnt = 1;
     static int N, result;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,12 +19,8 @@ public class Main  {
             case (1):
                 System.out.println(1);
                 return;
-            case (2):
-                System.out.println(1);
-                return;
         }
-
-
+        
         while (cnt != N) {
             fibo(0,1);
         }
@@ -33,13 +29,12 @@ public class Main  {
     }
 
     private static void fibo(int a, int b) {
+        cnt ++;
         if (cnt == N) {
             result = a+b;
             return;
         }
-
-        cnt ++;
+        
         fibo(b, a + b);
-
     }
 }
