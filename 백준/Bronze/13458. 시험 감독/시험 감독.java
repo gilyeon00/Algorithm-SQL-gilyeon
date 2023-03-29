@@ -4,26 +4,26 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static long N, B, C;
-    static long[] students;
+    static int N, B, C;
+    static int[] students;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        N = Long.parseLong(br.readLine());
+        N = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
-        students = new long[(int) N];
+        students = new int[N];
         for (int i = 0; i < N; i++) {
-            students[i] = Long.parseLong(st.nextToken());
+            students[i] = Integer.parseInt(st.nextToken());
         }
 
         st = new StringTokenizer(br.readLine());
-        B = Long.parseLong(st.nextToken()); // 총감독관이 담당하는 사람
-        C = Long.parseLong(st.nextToken());   // 부감독관이 담당하는 사람
+        B = Integer.parseInt(st.nextToken());   // 총감독관이 담당하는 사람
+        C = Integer.parseInt(st.nextToken());   // 부감독관이 담당하는 사람
 
         long total = 0;
-        for (long stu : students) {
+        for (int stu : students) {
             if (stu > B) {
                 total += Math.ceil((stu - B) / (C * 1.0)) + 1;
             } else {
