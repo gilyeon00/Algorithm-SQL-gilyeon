@@ -1,44 +1,49 @@
-# 빈공간에 지렁이가 들어가는 줄알고 대체 왜 3마리가 아니라 5마리일까 머리터질뻔했던 문제 ..
-# 1로 체킹돼있는 인접한 묶음 체킹 -> 한 번 돌때 0으로 초기화
+# 뭉쳐져 있는 구역 찾기 - BFS or DFS 이용
+    # BFS
+    #   - visited 쓰려했는데, 굳이 쓸 필요없이, 0으로 만들어놓으면 탐색하지 않음
+
 from collections import deque
 
-def bfs(b, a, graph) :
+    
+# 뭉쳐져 있는 뭉탱이 찾기
+def BFS(graph, a, b):
     q = deque()
-    q.append((b,a))
+    q.append((a,b))
+    graph[a][b] = 0
 
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, 1, -1]
+    dx = [0,0,1,-1]
+    dy = [1,-1,0,0]
 
-    while q :
-        y, x = q.popleft()
+    while(q):
+        x, y = q.popleft()
+        graph[x][y] = 0
 
         for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if(0<=nx<m and 0<=ny<n):
-                if graph[ny][nx] == 1:
-                    q.append((ny,nx))
-                    graph[ny][nx] = 0
-            else:
-                pass
-    return 
+            nx = dx[i] + x
+            ny = dy[i] + y
+            if(nx < 0 or nx >= M or ny < 0 or ny >= N): continue
+            if( graph[nx][ny] == 1):
+                q.append((nx,ny))
+                graph[nx][ny] = 0
 
 
-test_case = int(input())
-while test_case :
-    m, n, num = list(map(int, input().split()))   # 가로, 세로, 배추개수
-    bug_cnt = 0
 
-    graph= [ [0] * m for _ in range(n) ]  # (n,m)
-    for _ in range(num):
-        y, x = map(int, input().split()) # 가로, 세로로 입력받음 
-        graph[x][y] = 1
+T = int(input())
 
-    for i in range(n):
-        for j in range(m):
-            if graph[i][j] == 1:
-                bfs(i, j, graph)
-                bug_cnt += 1
+while(T): 
+    M, N, K = map(int, input().split()) # M: 가로, N:세로, K:배추위치 개수  
+    graph = [ [0] * N for _ in range(M) ]
 
-    print(bug_cnt)
-    test_case -= 1
+    for i in range(K):
+        a,b = map(int, input().split())
+        graph[a][b] = 1
+    
+    cnt = 0
+    for i in range(M):
+        for j in range(N):
+            if(graph[i][j] == 1):
+                BFS(graph, i,j)
+                cnt += 1
+
+    print(cnt)
+    T -= 1
